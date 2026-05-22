@@ -1,18 +1,17 @@
 public class Student {
-    String nim, name, className;
-    double gpa;
+    String nim;
+    String name;
+    String kelas;
+    double ipk;
 
-    public Student() {
+    Student(String nim, String name, String kelas, double ipk) {
+        this.nim = nim;
+        this.name = name;
+        this.kelas = kelas;
+        this.ipk = ipk;
     }
 
-    public Student(String nm, String nama, String kls, double ip) {
-        this.nim = nm;
-        this.name = nama;
-        this.className = kls;
-        this.gpa = ip;
-    }
-
-    void print(){
-        System.out.println(nim+" - "+name+" - "+className+" - "+gpa);
+    void print() {
+        System.out.println(nim + " - " + name + " - " + kelas + " - " + ipk);
     }
 }

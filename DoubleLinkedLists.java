@@ -191,7 +191,7 @@ public class DoubleLinkedLists {
             temp = temp.next;
             index++;
         }
-        return -1; 
+        return -1; // not found
     }
 
     void print() {
