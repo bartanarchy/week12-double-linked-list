@@ -33,6 +33,28 @@ public class DoubleLinkedLists {
         }
     }
 
+    void add(int index, Student data) {
+        if (index < 0 || index > getSize()) {
+            System.out.println("Invalid index.");
+            return;
+        }
+        if (index == 0) {
+            addFirst(data);
+        } else if (index == getSize()) {
+            addLast(data);
+        } else {
+            Node newNode = new Node(data);
+            Node temp = head;
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+            newNode.prev = temp.prev;
+            newNode.next = temp;
+            temp.prev.next = newNode;
+            temp.prev = newNode;
+        }
+    }
+
     void insertAfter(String key, Student data) {
         Node newNode = new Node(data);
         Node temp = head;
@@ -110,6 +132,45 @@ public class DoubleLinkedLists {
         }
     }
 
+    void removeAfter(String key) {
+        Node temp = head;
+        while (temp != null) {
+            if (temp.data.nim.equalsIgnoreCase(key)) {
+                if (temp.next == null) {
+                    System.out.println("No node exists after " + key);
+                } else if (temp.next == tail) {
+                    removeLast();
+                } else {
+                    Node toRemove = temp.next;
+                    temp.next = toRemove.next;
+                    toRemove.next.prev = temp;
+                }
+                return;
+            }
+            temp = temp.next;
+        }
+        System.out.println("Key (" + key + ") not found.");
+    }
+
+    Student getFirst() {
+        if (isEmpty()) return null;
+        return head.data;
+    }
+
+    Student getLast() {
+        if (isEmpty()) return null;
+        return tail.data;
+    }
+
+    Student getIndex(int index) {
+        if (index < 0 || index >= getSize()) return null;
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp.data;
+    }
+
     int getSize() {
         int count = 0;
         Node temp = head;
@@ -118,6 +179,19 @@ public class DoubleLinkedLists {
             temp = temp.next;
         }
         return count;
+    }
+
+    int indexOf(String key) {
+        Node temp = head;
+        int index = 0;
+        while (temp != null) {
+            if (temp.data.nim.equalsIgnoreCase(key)) {
+                return index;
+            }
+            temp = temp.next;
+            index++;
+        }
+        return -1; 
     }
 
     void print() {

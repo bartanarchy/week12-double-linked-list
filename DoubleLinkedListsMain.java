@@ -6,7 +6,7 @@ public class DoubleLinkedListsMain {
         dll.print();
         dll.addLast(new Student("112", "Prabowo", "TI-1I", 3.7));
         dll.print();
-        dll.addFirst(new Student("113", "Herco", "TI-1I", 3.89));
+        dll.add(1, new Student("113", "Herco", "TI-1I", 3.89));
         dll.print();
         dll.insertAfter("111", new Student("114", "Rizki", "TI-1I", 3.8));
         dll.print();
