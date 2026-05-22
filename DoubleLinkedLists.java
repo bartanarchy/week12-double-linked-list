@@ -13,7 +13,7 @@ public class DoubleLinkedLists {
 
     void addFirst(Student data) {
         Node newNode = new Node(data);
-        if(isEmpty()){
+        if (isEmpty()) {
             head = tail = newNode;
         } else {
             newNode.next = head;
@@ -21,10 +21,10 @@ public class DoubleLinkedLists {
             head = newNode;
         }
     }
-    
+
     void addLast(Student data) {
         Node newNode = new Node(data);
-        if(isEmpty()){
+        if (isEmpty()) {
             head = tail = newNode;
         } else {
             tail.next = newNode;
@@ -33,37 +33,39 @@ public class DoubleLinkedLists {
         }
     }
 
-    
-    void insertAfter(String key, Student data){
+    void insertAfter(String key, Student data) {
         Node newNode = new Node(data);
         Node temp = head;
-        while(temp!=null){
-            if(temp.data.nim.equalsIgnoreCase(key)){
-                if(temp == tail){
+        boolean found = false;
+        while (temp != null) {
+            if (temp.data.nim.equalsIgnoreCase(key)) {
+                found = true;
+                if (temp == tail) {
                     addLast(data);
-                }else{
+                } else {
                     newNode.next = temp.next;
                     newNode.prev = temp;
                     temp.next.prev = newNode;
                     temp.next = newNode;
                 }
+                break; // stop after insertion
             }
             temp = temp.next;
         }
-        if(temp == null){
-            System.out.println("Insertion failed. Data ("+key+") not found.");
+        if (!found) {
+            System.out.println("Insertion failed. Data (" + key + ") not found.");
         }
     }
 
-    void print(){
-        if(!isEmpty()){
+    void print() {
+        if (!isEmpty()) {
             Node temp = head;
-            while(temp!=null){
+            while (temp != null) {
                 temp.data.print();
                 temp = temp.next;
             }
             System.out.println("");
-        }else{
+        } else {
             System.out.println("Double Linked List is currently empty.");
         }
     }
