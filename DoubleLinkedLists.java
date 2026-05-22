@@ -48,7 +48,7 @@ public class DoubleLinkedLists {
                     temp.next.prev = newNode;
                     temp.next = newNode;
                 }
-                break; // stop after insertion
+                break; 
             }
             temp = temp.next;
         }
