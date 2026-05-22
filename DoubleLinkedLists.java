@@ -48,13 +48,76 @@ public class DoubleLinkedLists {
                     temp.next.prev = newNode;
                     temp.next = newNode;
                 }
-                break; 
+                break;
             }
             temp = temp.next;
         }
         if (!found) {
             System.out.println("Insertion failed. Data (" + key + ") not found.");
         }
+    }
+
+    void removeFirst() {
+        if (isEmpty()) {
+            System.out.println("Double linked list is currently empty!!");
+        } else if (head == tail) {
+            head = tail = null;
+        } else {
+            head = head.next;
+            head.prev = null;
+        }
+    }
+
+    void removeLast() {
+        if (isEmpty()) {
+            System.out.println("Double linked list is currently empty!!");
+        } else if (head == tail) {
+            head = tail = null;
+        } else {
+            tail = tail.prev;
+            tail.next = null;
+        }
+    }
+
+    void remove(int index) {
+        if (isEmpty()) {
+            System.out.println("Double linked list is currently empty!!");
+            return;
+        }
+        if (index < 0) {
+            System.out.println("Invalid index. Must be non-negative.");
+            return;
+        }
+        int size = getSize();
+        if (index >= size) {
+            System.out.println("Invalid index. Exceeds list size.");
+            return;
+        }
+
+        if (index == 0) {
+            removeFirst();
+        } else {
+            Node temp = head;
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+            if (temp == tail) {
+                removeLast();
+            } else {
+                temp.prev.next = temp.next;
+                temp.next.prev = temp.prev;
+            }
+        }
+    }
+
+    int getSize() {
+        int count = 0;
+        Node temp = head;
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+        return count;
     }
 
     void print() {
